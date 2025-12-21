@@ -1,5 +1,8 @@
 class Controls {
+
+    // Construct controls based on type
     constructor(type) {
+
         this.forward = false;
         this.left = false;
         this.right = false;
@@ -7,16 +10,21 @@ class Controls {
 
         switch(type) {
             case "PLAYER":
+                // only add keyboard listeners if control type is player
                 this.#addKeyboardListeners();
                 break;
             case "DUMMY":
+                // These dummy cars are the traffic cars, so just keep them moving forward
                 this.forward = true;
                 break;
         }
 
     }
 
+    // Add controls for the player via the arrow keys
     #addKeyboardListeners() {
+
+        // Add onkeydown events for when a key is PRESSED
         document.onkeydown = (event) => {
             switch(event.key) {
                 case "ArrowLeft":
@@ -34,6 +42,7 @@ class Controls {
             }
         }
 
+        // Add onkeyup events for when a key is RELEASED
         document.onkeyup = (event) => {
             switch(event.key) {
                 case "ArrowLeft":
