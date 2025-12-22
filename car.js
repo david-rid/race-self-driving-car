@@ -1,7 +1,7 @@
 class Car {
 
     // Constructor for car with maxSpeed being set to 4 by default
-    constructor(x, y, width, height, controlType, maxSpeed = 4) {
+    constructor(x, y, width, height, controlType, maxSpeed = 3) {
 
         // Position car
         this.x = x;

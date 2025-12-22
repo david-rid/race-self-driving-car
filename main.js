@@ -34,9 +34,11 @@ const playerRoad = new Road(playerCanvas.width/2, playerCanvas.width*0.9);
 
 // Make a singular player car
 let playerCar = new Car(playerRoad.getLaneCenter(1), 100, 30, 50, "PLAYER");
+// Make the default max speed 3
+let playerMaxSpeed = 3;
 
 // Count to determine the amount of AI cars
-const aiCount = 250;
+let aiCount = 250;
 
 // Generate the AI cars
 let aiCars = generateCars(aiCount);
@@ -72,8 +74,8 @@ if (localStorage.getItem("bestBrain")) {
 
 // ------ Traffic Creation ------
 
-// Set a value for the number of cars that will be in traffic
-const maxTraffic = 50;
+// Set a value for the number of cars that will be in traffic, 35 by default
+let maxTraffic = 35;
 
 // Generate some random traffic
 function randomTraffic(road, trafficArray) {
@@ -93,6 +95,74 @@ const playerTraffic = [];
 randomTraffic(playerRoad, playerTraffic);
 
 // ------ End of Traffic Creation ------
+
+// ------ Sliders Creation / Logic ------
+
+const aiCountSlider = document.getElementById("aiCountSlider");
+const aiCountDisplay = document.getElementById("aiCountDisplay");
+
+// This function runs every time the AI count slider moves
+// Used to display the number the user will select when slider is released
+aiCountSlider.addEventListener("input", (event) => {
+
+    // Update the count visually
+    aiCountDisplay.innerText = parseInt(aiCountSlider.value);
+});
+
+// This function runs when the user picks a new value
+aiCountSlider.addEventListener("change", (event) => {
+
+    // Update the aiCount variable with the new value
+    aiCount = parseInt(aiCountSlider.value)
+
+    // Reset the AI state
+    resetAiState();
+});
+
+const speedSlider = document.getElementById("speedSlider");
+const speedDisplay = document.getElementById("speedDisplay");
+
+// This function runs every time the speed slider moves
+// Used to display the number the user will select when slider is released
+speedSlider.addEventListener("input", (event) => {
+
+    // Update the count visually
+    speedDisplay.innerText = parseInt(speedSlider.value);
+});
+
+// This function runs when the user picks a new value
+speedSlider.addEventListener("change", (event) => {
+
+    // Update the aiCount variable with the new value
+    playerMaxSpeed = parseInt(speedSlider.value);
+
+    // Reset the player state
+    resetPlayerState();
+});
+
+const trafficSlider = document.getElementById("trafficSlider");
+const trafficDisplay = document.getElementById("trafficDisplay");
+
+// This function runs every time the traffic slider moves
+// Used to display the number the user will select when slider is released
+trafficSlider.addEventListener("input", (event) => {
+
+    // Update the count visually
+    trafficDisplay.innerText = parseInt(trafficSlider.value);
+});
+
+// This function runs when the user picks a new value
+trafficSlider.addEventListener("change", (event) => {
+
+    // Update the aiCount variable with the new value
+    maxTraffic = parseInt(trafficSlider.value);
+
+    // Reset the player and AI state
+    resetPlayerState();
+    resetAiState();
+});
+
+// ------ End of Sliders Creation / Logic ------
 
 
 // ------ Animation ------
@@ -302,10 +372,29 @@ function resetPlayerState() {
 
     console.log("Resetting Player state.");
 
-    playerCar = new Car(playerRoad.getLaneCenter(1), 100, 30, 50, "PLAYER");
+    playerCar = new Car(playerRoad.getLaneCenter(1), 100, 30, 50, "PLAYER", playerMaxSpeed);
 
     playerTraffic.length = 0;
     randomTraffic(playerRoad, playerTraffic);
 }
 
 // ------ End of Reset States for AI and Player ------
+
+// ------ Change Game Variables ------
+
+// Method to update the number of AI cars running in parallel
+function updateAiCount() {
+
+}
+
+// Method to update the max speed of the player car
+function updateSpeed() {
+
+}
+
+// Method to update the number of cars in traffic
+function updateTrafficCount() {
+    
+}
+
+// ------ End of Change Game Variables ------

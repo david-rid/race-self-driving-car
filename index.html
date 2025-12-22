@@ -6,8 +6,35 @@
     </head>
 
     <body>
+
+        <div id="sliders">
+
+            <div id="aiCountDiv">
+                <label for="aiCountSlider">AI Car Count: </label>
+                <input type="range" id="aiCountSlider" min="10" max="500" value="100">
+                <b id="aiCountDisplay">100</b>
+            </div>
+
+            <div id="speedDiv">
+                <label for="speedSlider">Maximum Player Car Speed: </label>
+                <input type="range" id="speedSlider" min="3" max="10" value="3">
+                <b id="speedDisplay">3</b>
+            </div>
+
+            <div id="trafficDiv"> 
+                <label for="trafficSlider">Number of Cars in Traffic: </label>
+                <input type="range" id="trafficSlider" min="20" max="100" value="35">
+                <b id="trafficDisplay">35</b>
+            </div>
+
+        </div>
+
         <canvas id="playerCanvas"></canvas>
         <canvas id="carCanvas"></canvas>
+        <div id="vButtons">
+            <button onclick="save()">💾 Save Best Car</button>
+            <button onclick="discard()">🗑️ Discard Brain</button>
+        </div>
         <canvas id="networkCanvas"></canvas>
         <script src="aiUtils.js"></script>
         <script src="vizualizer.js"></script>
@@ -18,10 +45,7 @@
         <script src="controls.js"></script>
         <script src="car.js"></script>
         <script src="main.js"></script>
-        <div id="vButtons">
-            <button onclick="save()">💾 Save Best Car</button>
-            <button onclick="discard()">🗑️ Discard Brain</button>
-        </div>
+
     </body>
     
 </html>
