@@ -1,2 +1,2 @@
-# self-driving-car
-A neural network created with JavaScript to drive a car in my self-made game, without the use of libraries.
+# racing-agent-ml
+A library-free Neural Network in JavaScript to simulate autonomous vehicle navigation within a custom-built racing environment. Implemented with real-time sensor logic and spatial-data processing to enable a self-learning AI agent to compete against human players in a low-latency racing simulation.
